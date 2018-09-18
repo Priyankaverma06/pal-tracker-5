@@ -13,6 +13,8 @@ jobs:
       language: java
       jdk: oraclejdk8
       install: skip
+      before_script:
+      - chmod +x gradlew
       script: ./gradlew clean build
       before_deploy:
         - git config --local user.name "Travis CI"
@@ -37,7 +39,4 @@ jobs:
         password: $CF_PASSWORD
         organization: $CF_ORG
         space: test5
-      before_script:
-      - chmod +x gradlew
-
-      skip_ssl_validation: true
+        skip_ssl_validation: true
