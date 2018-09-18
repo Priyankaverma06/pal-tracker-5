@@ -39,4 +39,5 @@ jobs:
         space: test5
       before_script:
       - chmod +x gradlew
+
       skip_ssl_validation: true
