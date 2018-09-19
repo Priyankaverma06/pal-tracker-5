@@ -29,7 +29,7 @@ jobs:
       api_key: $GITHUB_OAUTH_TOKEN
       file: "build/libs/pal-tracker.jar"
       skip_cleanup: true
-  - stage: deploy to review
+  - stage: deploy to test5
     language: java
     before_install:
     - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
@@ -44,8 +44,8 @@ jobs:
     before_deploy:
     - echo "Deploying $RELEASE_TAG to review"
     after_success:
-    - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s review
-    - scripts/migrate-databases.sh pal-tracker .
+    - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s test5
+    - scripts/migrate-databases.sh test5 .
     deploy:
       provider: cloudfoundry
       api: $CF_API_URL
